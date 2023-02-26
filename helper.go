@@ -60,3 +60,28 @@ func Post(uri string, authName string, authValue string, data any) (*http.Respon
 
 	return response, nil
 }
+
+func Put(uri string, authName string, authValue string, data any) (*http.Response, error) {
+	jsonBytes, err := json.Marshal(data)
+	if err != nil {
+		return nil, err
+	}
+
+	body := bytes.NewBuffer(jsonBytes)
+	request, err := http.NewRequest("PUT", uri, body)
+	if err != nil {
+		return nil, err
+	}
+
+	client := &http.Client{}
+
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Authorization", fmt.Sprintf("%s %s", authName, authValue))
+
+	response, err := client.Do(request)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
