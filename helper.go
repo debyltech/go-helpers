@@ -78,6 +78,7 @@ func Put(uri string, authName string, authValue string, data any) (*http.Respons
 	client := &http.Client{}
 
 	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Accept", "application/json")
 	request.Header.Set("Authorization", fmt.Sprintf("%s %s", authName, authValue))
 
 	response, err := client.Do(request)
