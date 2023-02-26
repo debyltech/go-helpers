@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 )
 
@@ -38,7 +37,7 @@ func Get(uri string, authName string, authValue string, queries map[string]strin
 	return response, nil
 }
 
-func Post(uri string, authName string, authValue string, data io.Reader) (*http.Response, error) {
+func Post(uri string, authName string, authValue string, data any) (*http.Response, error) {
 	jsonBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
@@ -64,7 +63,7 @@ func Post(uri string, authName string, authValue string, data io.Reader) (*http.
 	return response, nil
 }
 
-func Put(uri string, authName string, authValue string, data io.Reader) (*http.Response, error) {
+func Put(uri string, authName string, authValue string, data any) (*http.Response, error) {
 	jsonBytes, err := json.Marshal(data)
 	if err != nil {
 		return nil, err
