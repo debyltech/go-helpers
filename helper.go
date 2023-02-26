@@ -17,6 +17,7 @@ func Get(uri string, authName string, authValue string, queries map[string]strin
 	client := &http.Client{}
 
 	request.Header.Set("Accept", "application/json")
+	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Authorization", fmt.Sprintf("%s %s", authName, authValue))
 
 	if len(queries) > 0 {
@@ -51,6 +52,7 @@ func Post(uri string, authName string, authValue string, data io.Reader) (*http.
 
 	client := &http.Client{}
 
+	request.Header.Set("Accept", "application/json")
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Authorization", fmt.Sprintf("%s %s", authName, authValue))
 
